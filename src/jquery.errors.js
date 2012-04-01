@@ -1,6 +1,7 @@
-(function($){
+(function($, _){
   $.widget("travisjeffery.errors", {
     _create: function(){
+      _.bindAll(this)
       this.container = this.element
       this.list = this.element.find("ul")
     }
@@ -42,4 +43,4 @@
       return errorList
     }
   }) 
-}(jQuery))
+}(jQuery, _));
