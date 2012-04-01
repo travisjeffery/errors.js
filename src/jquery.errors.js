@@ -8,7 +8,7 @@
 
   $.extend($.travisjeffery.errors.prototype, {
     add: function(error){
-      var errors = this.buildErrorList(error)
+      var errors = this._buildErrorList(error)
 
       this.reset()
       this.show()
@@ -29,7 +29,12 @@
       this.list.empty()
     },
 
-    buildErrorList: function(errors){
+    handle: function(xhr, status, error){
+      var errors = $.parseJSON(xhr.responseText).errors
+      this.add(errors)
+    },
+
+    _buildErrorList: function(errors){
       var errorArray = $.makeArray(errors),
       stringToItem = function(message){return "<li>"+ message +"</li>"},
       errorList = $.map(errorArray, stringToItem).join("\n")

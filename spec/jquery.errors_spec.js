@@ -61,5 +61,13 @@ describe("$.fn.errors", function(){
       expect($.fn.hide).toHaveBeenCalled()
     })
   })
+
+  describe("#handle", function(){
+    it("should add errors parsed from json/response text", function(){
+      this.list.errors("handle", {responseText: '{"errors": ["HI", "BYE"]}'})
+      expect(this.ul.find("li:first").text()).toBe("HI")
+      expect(this.ul.find("li:last").text()).toBe("BYE")
+    })
+  })
 });
 
